@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --background: #090806;
+  --foreground: #f3ecde;
+}
+
+@theme inline {
+  --color-background: #090806;
+  --color-foreground: #f3ecde;
+  --color-ink: #f3ecde;
+  --color-ink-soft: #d1c7b6;
+  --color-ink-muted: #a99c87;
+  --color-border: #2e261f;
+  --color-panel: #15100d;
+  --color-accent: #ce8d4f;
+  --color-accent-2: #e2aa74;
+  --color-burgundy: #6f2f2f;
+  --font-sans: var(--font-sora);
+  --font-display: var(--font-cormorant);
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 15%, rgb(99 59 39 / 32%), transparent 34%),
+    radial-gradient(circle at 82% 8%, rgb(90 35 33 / 22%), transparent 30%),
+    linear-gradient(180deg, #0b0907 0%, #080705 100%);
+  color: var(--color-foreground);
+  font-family: var(--font-sora), sans-serif;
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.noise-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 6%) 1px, transparent 0);
+  background-size: 3px 3px;
+}
+
+.reveal-up {
+  animation: reveal-up 700ms ease-out both;
+}
+
+.float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+a,
+button {
+  transition-duration: 250ms;
+}
