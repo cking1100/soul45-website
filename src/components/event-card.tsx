@@ -19,14 +19,14 @@ export function EventCard({ event }: EventCardProps) {
           className="object-contain p-2 transition duration-700 group-hover:scale-[1.02]"
         />
       </div>
-      <div className="space-y-3 p-5">
+      <div className="space-y-4 p-5">
         {event.isPlaceholder ? (
           <span className="inline-block rounded-full border border-border px-3 py-1 text-[0.65rem] uppercase tracking-[0.16em] text-ink-muted">
             Planning Template
           </span>
         ) : null}
         <h3 className="font-display text-3xl leading-none tracking-[0.04em] text-ink">{event.title}</h3>
-        <dl className="space-y-1 text-sm text-ink-soft">
+        <dl className="space-y-1 rounded-2xl border border-border/70 bg-black/20 p-3 text-sm text-ink-soft">
           <div>
             <dt className="sr-only">Date</dt>
             <dd>{event.dateLabel}</dd>
@@ -40,7 +40,10 @@ export function EventCard({ event }: EventCardProps) {
             <dd>{event.artistsLabel}</dd>
           </div>
         </dl>
-        <p className="text-sm leading-relaxed text-ink-soft">{event.summary}</p>
+        <div className="rounded-2xl border border-border/70 bg-[linear-gradient(145deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-accent">Description</p>
+          <p className="mt-2 text-sm leading-7 text-ink-soft">{event.summary}</p>
+        </div>
         <div className="flex flex-wrap gap-2 pt-2">
           <Link
             href={`/events/${event.slug}`}
