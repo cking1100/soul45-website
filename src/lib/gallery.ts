@@ -3,6 +3,10 @@ export type GalleryImage = {
   alt: string;
   category: "Venue" | "Vinyl" | "DJs" | "Music" | "Drinks" | "Atmosphere";
   featured?: boolean;
+  attributions?: Array<{
+    name: string;
+    url?: string;
+  }>;
 };
 
 export const galleryImages: GalleryImage[] = [
@@ -25,7 +29,7 @@ export const galleryImages: GalleryImage[] = [
   },
   {
     src: "/images/Taps.png",
-    alt: "Beer taps available at Soul 45",
+    alt: "Soul 45 draught beer taps for Kasteel Rouge, Grand Central IPA, Appleshed Cider and Brinkhoffs Lager",
     category: "Drinks",
   },
 ];

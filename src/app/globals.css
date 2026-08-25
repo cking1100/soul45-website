@@ -3,6 +3,14 @@
 :root {
   --background: #090806;
   --foreground: #f3ecde;
+  --panel: #120e0c;
+  --panel-soft: #17120f;
+  --panel-strong: #1d1714;
+  --line: rgba(239, 220, 192, 0.12);
+  --line-strong: rgba(239, 220, 192, 0.2);
+  --warm-amber: #ce8d4f;
+  --warm-amber-soft: #e7ba88;
+  --vinyl-shadow: rgba(31, 17, 11, 0.82);
 }
 
 @theme inline {
@@ -11,23 +19,42 @@
   --color-ink: #f3ecde;
   --color-ink-soft: #d1c7b6;
   --color-ink-muted: #a99c87;
-  --color-border: #2e261f;
-  --color-panel: #15100d;
+  --color-border: rgba(239, 220, 192, 0.12);
+  --color-panel: #120e0c;
   --color-accent: #ce8d4f;
-  --color-accent-2: #e2aa74;
+  --color-accent-2: #e7ba88;
   --color-burgundy: #6f2f2f;
   --font-sans: var(--font-sora);
   --font-display: var(--font-cormorant);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background:
-    radial-gradient(circle at 15% 15%, rgb(99 59 39 / 32%), transparent 34%),
-    radial-gradient(circle at 82% 8%, rgb(90 35 33 / 22%), transparent 30%),
-    linear-gradient(180deg, #0b0907 0%, #080705 100%);
+    radial-gradient(circle at top left, rgba(156, 91, 49, 0.18), transparent 26%),
+    radial-gradient(circle at 80% 10%, rgba(120, 36, 28, 0.16), transparent 24%),
+    linear-gradient(180deg, #090806 0%, #0c0a08 34%, #090706 100%);
   color: var(--color-foreground);
   font-family: var(--font-sora), sans-serif;
   min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 0.6px, transparent 0.8px);
+  background-size: 4px 4px;
+  opacity: 0.1;
+  mix-blend-mode: screen;
+}
+
+img {
+  max-width: 100%;
 }
 
 .app-shell {
@@ -40,9 +67,90 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.22;
-  background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 6%) 1px, transparent 0);
-  background-size: 3px 3px;
+  opacity: 0.16;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
+.page-shell {
+  position: relative;
+  border-top: 1px solid rgba(239, 220, 192, 0.12);
+  border-bottom: 1px solid rgba(239, 220, 192, 0.12);
+  background: rgba(10, 8, 7, 0.32);
+}
+
+.section-rule {
+  border-top: 1px solid rgba(239, 220, 192, 0.12);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--warm-amber-soft);
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 2.75rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(231, 186, 136, 0.9), rgba(231, 186, 136, 0));
+}
+
+.catalog-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-amber-soft);
+}
+
+.catalog-label::before {
+  content: "";
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+
+.editorial-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--line-strong), transparent 78%);
+}
+
+.metadata-label {
+  font-size: 0.54rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-amber-soft);
+}
+
+.editorial-title {
+  font-family: var(--font-cormorant), serif;
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.image-card {
+  overflow: hidden;
+  border: 1px solid rgba(239, 220, 192, 0.12);
+  background: rgba(18, 13, 12, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.image-card img {
+  transition: transform 700ms ease, filter 700ms ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.04);
 }
 
 .reveal-up {
@@ -67,7 +175,7 @@ body {
 @keyframes float-slow {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0px);
   }
   50% {
     transform: translateY(-7px);
@@ -77,4 +185,25 @@ body {
 a,
 button {
   transition-duration: 250ms;
+}
+
+:focus-visible {
+  outline: 2px solid var(--warm-amber-soft);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(206, 141, 79, 0.35);
+  color: #f7f0e8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
 }

@@ -18,10 +18,11 @@ export function CtaSection({
   secondaryHref,
 }: CtaSectionProps) {
   return (
-    <section className="mx-auto my-14 w-full max-w-7xl rounded-3xl border border-border bg-panel px-4 py-10 md:px-8">
+    <section className="mx-auto my-14 w-full max-w-7xl border border-border bg-[#120d0b] px-4 py-10 md:px-8">
       <div className="grid gap-7 md:grid-cols-[1.2fr_auto] md:items-end">
         <div>
-          <h2 className="font-display text-4xl tracking-[0.04em] text-ink md:text-5xl">{title}</h2>
+          <p className="eyebrow">Join the session</p>
+          <h2 className="editorial-title mt-4 text-4xl text-ink md:text-5xl">{title}</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-soft">{body}</p>
         </div>
         <div className="flex flex-wrap gap-3">

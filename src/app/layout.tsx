@@ -34,11 +34,14 @@ const keywords = [
   "Vinyl cafe Hull",
 ];
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 const businessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: BUSINESS_FULL_NAME,
   description: BUSINESS_DESCRIPTION,
+  ...(siteUrl ? { url: siteUrl, image: `${siteUrl}/images/soul45-logo.jpg` } : {}),
   address: {
     "@type": "PostalAddress",
     streetAddress: ADDRESS_LINES[0],
@@ -51,6 +54,7 @@ const businessJsonLd = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
     default: "Soul 45 | Listening Bar · Record Shop · Cafe",
     template: "%s | Soul 45",
@@ -61,11 +65,13 @@ export const metadata: Metadata = {
     title: "Soul 45 | Listening Bar · Record Shop · Cafe",
     description: BUSINESS_DESCRIPTION,
     type: "website",
+    ...(siteUrl ? { images: [{ url: "/images/soul45-logo.jpg", alt: "Soul 45 logo" }] } : {}),
   },
   twitter: {
     card: "summary_large_image",
     title: "Soul 45",
     description: BUSINESS_DESCRIPTION,
+    ...(siteUrl ? { images: ["/images/soul45-logo.jpg"] } : {}),
   },
 };
 

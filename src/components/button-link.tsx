@@ -14,10 +14,10 @@ export function ButtonLink({ href, children, variant = "solid", target = "_self"
       href={href}
       target={target}
       rel={target === "_blank" ? "noreferrer" : undefined}
-      className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.15em] transition ${
+      className={`inline-flex items-center justify-center px-5 py-2.5 text-[0.7rem] uppercase tracking-[0.2em] transition ${
         variant === "solid"
           ? "bg-accent text-black hover:bg-accent-2"
-          : "border border-border text-ink-soft hover:border-accent hover:text-accent"
+          : "border border-border bg-transparent text-ink-soft hover:border-accent hover:text-accent"
       }`}
     >
       {children}

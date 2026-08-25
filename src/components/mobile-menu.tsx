@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { INSTAGRAM_URL, NAV_ITEMS } from "@/lib/site";
 import { InstagramIcon } from "./instagram-icon";
@@ -10,11 +10,27 @@ import { InstagramIcon } from "./instagram-icon";
 export function MobileMenu() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
+        ref={menuButtonRef}
         onClick={() => setOpen((prev) => !prev)}
         className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-panel text-ink transition hover:border-accent hover:text-accent"
         aria-expanded={open}
@@ -35,6 +51,8 @@ export function MobileMenu() {
 
       <div
         id="mobile-navigation"
+        aria-hidden={!open}
+        hidden={!open}
         className={`absolute left-4 right-4 top-[4.6rem] z-40 rounded-3xl border border-border bg-black/95 p-5 backdrop-blur transition ${
           open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-3 opacity-0"
         }`}

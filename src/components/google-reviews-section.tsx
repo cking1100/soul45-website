@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { getGooglePlaceDetails } from "@/lib/google-places";
 import { GOOGLE_REVIEWS_URL } from "@/lib/site";
 
 type GoogleReviewsSectionProps = {
@@ -21,68 +22,14 @@ type GoogleReviewsData = {
   reviews: GoogleReview[];
 };
 
-async function resolvePlaceId(apiKey: string) {
-  const response = await fetch("https://places.googleapis.com/v1/places:searchText", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Goog-Api-Key": apiKey,
-      "X-Goog-FieldMask": "places.id",
-    },
-    body: JSON.stringify({ textQuery: "Soul 45 45 Newland Ave Hull HU5 3BE" }),
-    cache: "no-store",
-  });
-
-  if (!response.ok) {
-    return null;
-  }
-
-  const data = (await response.json()) as { places?: Array<{ id?: string }> };
-  return data.places?.[0]?.id ?? null;
-}
-
 async function loadGoogleReviews(): Promise<GoogleReviewsData | null> {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY ?? process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
+  const details = await getGooglePlaceDetails("displayName,rating,userRatingCount,reviews");
 
-  if (!apiKey) {
+  if (!details) {
     return null;
   }
 
-  try {
-    const placeId = process.env.GOOGLE_PLACE_ID ?? (await resolvePlaceId(apiKey));
-
-    if (!placeId) {
-      return null;
-    }
-
-    const detailsResponse = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
-      headers: {
-        "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask": "displayName,rating,userRatingCount,reviews",
-      },
-      cache: "no-store",
-    });
-
-    if (!detailsResponse.ok) {
-      return null;
-    }
-
-    const details = (await detailsResponse.json()) as {
-      displayName?: { text?: string };
-      rating?: number;
-      userRatingCount?: number;
-      reviews?: Array<{
-        rating?: number;
-        text?: { text?: string };
-        relativePublishTimeDescription?: string;
-        authorAttribution?: {
-          displayName?: string;
-          uri?: string;
-        };
-      }>;
-    };
-
-    const reviews: GoogleReview[] = (details.reviews ?? [])
+  const reviews: GoogleReview[] = (details.reviews ?? [])
       .map((review) => ({
         authorName: review.authorAttribution?.displayName ?? "Google User",
         rating: review.rating ?? 0,
@@ -93,15 +40,12 @@ async function loadGoogleReviews(): Promise<GoogleReviewsData | null> {
       .filter((review) => review.text.length > 0)
       .slice(0, 6);
 
-    return {
-      placeName: details.displayName?.text,
-      rating: details.rating,
-      userRatingCount: details.userRatingCount,
-      reviews,
-    };
-  } catch {
-    return null;
-  }
+  return {
+    placeName: details.displayName?.text,
+    rating: details.rating,
+    userRatingCount: details.userRatingCount,
+    reviews,
+  };
 }
 
 export async function GoogleReviewsSection({ compact = false }: GoogleReviewsSectionProps) {
@@ -188,8 +132,7 @@ export async function GoogleReviewsSection({ compact = false }: GoogleReviewsSec
         ) : (
           <div className="mt-4 rounded-2xl border border-border bg-black/20 p-5">
             <p className="text-sm leading-relaxed text-ink-soft">
-              Live Google review entries are not available yet. Add GOOGLE_MAPS_API_KEY and optionally GOOGLE_PLACE_ID
-              in your environment settings, then restart the server.
+              Read the latest feedback on Google, or share your own experience with the Soul 45 community.
             </p>
           </div>
         )}

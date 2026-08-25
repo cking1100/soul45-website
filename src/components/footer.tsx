@@ -10,16 +10,17 @@ import {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-black/60">
+    <footer className="border-t border-border bg-[#0b0907]">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 md:grid-cols-3 md:px-8">
         <div>
-          <h2 className="font-display text-2xl tracking-[0.15em] text-ink">SOUL 45</h2>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-soft">{BUSINESS_FULL_NAME}</p>
+          <p className="text-[0.64rem] uppercase tracking-[0.26em] text-accent">Soul 45</p>
+          <h2 className="editorial-title mt-3 text-3xl text-ink">Listening Bar · Record Shop · Cafe</h2>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">{BUSINESS_FULL_NAME}</p>
           <p className="mt-4 text-sm text-ink-soft">{ADDRESS_LINES.join(", ")}</p>
         </div>
 
         <div>
-          <h3 className="text-xs uppercase tracking-[0.2em] text-ink">Explore</h3>
+          <h3 className="text-[0.62rem] uppercase tracking-[0.2em] text-ink">Explore</h3>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-ink-soft">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
@@ -32,16 +33,16 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xs uppercase tracking-[0.2em] text-ink">Follow</h3>
+          <h3 className="text-[0.62rem] uppercase tracking-[0.2em] text-ink">Follow</h3>
           <Link
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex rounded-full border border-border px-4 py-2 text-sm text-ink-soft transition hover:border-accent hover:text-accent"
+            className="mt-4 inline-flex border border-border px-4 py-2 text-sm text-ink-soft transition hover:border-accent hover:text-accent"
           >
             {INSTAGRAM_HANDLE}
           </Link>
-          <p className="mt-6 text-xs uppercase tracking-[0.16em] text-ink-muted">Music first. Always.</p>
+          <p className="mt-6 text-[0.62rem] uppercase tracking-[0.18em] text-ink-muted">Music first. Always.</p>
         </div>
       </div>
     </footer>

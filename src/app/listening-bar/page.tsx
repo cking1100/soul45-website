@@ -15,17 +15,18 @@ export default function ListeningBarPage() {
     <>
       <PageHeader
         eyebrow="Listening Bar"
-        title="LISTEN PROPERLY."
+        title="Listen properly."
         intro="Soul 45 is one open room built around focused listening: vinyl on turntables, selectors on rotation and a setup tuned for detail, warmth and connection."
       />
 
-      <section className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-14 md:grid-cols-2 md:px-8">
-        <article className="relative min-h-[28rem] overflow-hidden rounded-3xl border border-border">
+      <section className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-8">
+        <article className="image-card relative min-h-[30rem] overflow-hidden">
           <Image src="/images/gallery-dj.svg" alt="Turntables and DJ setup" fill className="object-cover" />
         </article>
 
-        <article className="rounded-3xl border border-border bg-panel p-6 md:p-8">
-          <h2 className="font-display text-4xl tracking-[0.04em] text-ink md:text-5xl">Atmosphere And Sound</h2>
+        <article className="border border-border bg-[#120d0b] p-6 md:p-8">
+          <p className="eyebrow">Atmosphere and sound</p>
+          <h2 className="editorial-title mt-4 text-4xl text-ink md:text-5xl">A room tuned for detail.</h2>
           <p className="mt-4 text-base leading-relaxed text-ink-soft">
             Sessions flow through jazz, soul, funk, disco, house and electronic records. The energy shifts by hour,
             from reflective daytime selections to rhythmic evening movement.
@@ -34,17 +35,17 @@ export default function ListeningBarPage() {
             The listening bar format puts attention back on records, transitions and texture. You hear intent in the
             sequencing, the room and the people around you.
           </p>
-          <ul className="mt-6 grid gap-2 text-sm uppercase tracking-[0.14em] text-ink-muted md:grid-cols-2">
-            <li>Vinyl-First Sets</li>
-            <li>Turntable Culture</li>
-            <li>Selector-Led Sessions</li>
-            <li>Calm, Intentional Listening</li>
+          <ul className="mt-6 grid gap-2 text-[0.68rem] uppercase tracking-[0.2em] text-ink-muted md:grid-cols-2">
+            <li>Vinyl-first sets</li>
+            <li>Turntable culture</li>
+            <li>Selector-led sessions</li>
+            <li>Calm listening</li>
           </ul>
         </article>
       </section>
 
       <CtaSection
-        title="See Upcoming Sessions"
+        title="See upcoming sessions"
         body="Soul 45 event formats are updated as new sessions are confirmed."
         primaryLabel="Browse Events"
         primaryHref="/events"
