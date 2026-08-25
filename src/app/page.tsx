@@ -130,7 +130,7 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8">
         <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
           <div className="image-card relative min-h-[24rem] overflow-hidden">
-            <Image src="/images/venueOutisde.png" alt="Exterior of Soul 45 on Newland Avenue" fill className="object-cover" />
+            <Image src="/images/venueOutisde.png" alt="Exterior of Soul 45 on Newland Avenue" fill sizes="(max-width: 1280px) 100vw, 60vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 max-w-md p-6 md:p-8">
               <p className="text-[0.62rem] uppercase tracking-[0.22em] text-accent">Featured experience</p>

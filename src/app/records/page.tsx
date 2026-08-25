@@ -36,7 +36,7 @@ export default function RecordsPage() {
         </article>
 
         <article className="image-card relative min-h-[28rem] overflow-hidden md:col-span-5">
-          <Image src="/images/gallery-vinyl.svg" alt="Record bins and vinyl browsing" fill className="object-cover" />
+          <Image src="/images/gallery-vinyl.svg" alt="Record bins and vinyl browsing" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         </article>
       </section>
 

@@ -36,7 +36,7 @@ export default function AboutPage() {
         </article>
 
         <aside className="relative min-h-[24rem] overflow-hidden rounded-3xl border border-border md:col-span-5">
-          <Image src="/images/gallery-venue.svg" alt="Soul 45 interior visual" fill className="object-cover" />
+          <Image src="/images/gallery-venue.svg" alt="Soul 45 interior visual" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         </aside>
       </section>
 

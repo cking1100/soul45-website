@@ -4,9 +4,10 @@ import type { GalleryImage } from "@/lib/gallery";
 
 type GalleryGridProps = {
   images: GalleryImage[];
+  priorityFirst?: boolean;
 };
 
-export function GalleryGrid({ images }: GalleryGridProps) {
+export function GalleryGrid({ images, priorityFirst = false }: GalleryGridProps) {
   return (
     <div className="columns-1 gap-5 sm:columns-2 lg:columns-3">
       {images.map((image, index) => (
@@ -15,7 +16,14 @@ export function GalleryGrid({ images }: GalleryGridProps) {
           className="image-card mb-5 break-inside-avoid overflow-hidden bg-panel/80"
         >
           <div className={`group relative overflow-hidden ${image.featured ? "aspect-[4/5]" : "aspect-[4/3]"}`}>
-            <Image src={image.src} alt={image.alt} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover" />
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              priority={priorityFirst && index === 0}
+              sizes="(max-width: 1024px) 50vw, 33vw"
+              className="object-cover"
+            />
             <p className="absolute bottom-3 left-3 bg-black/70 px-2 py-1 text-[0.54rem] uppercase tracking-[0.2em] text-ink">
               Frame {String(index + 1).padStart(2, "0")}
             </p>

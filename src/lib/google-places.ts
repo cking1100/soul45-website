@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 const PLACES_API_URL = "https://places.googleapis.com/v1";
 const MAX_GALLERY_PHOTOS = 10;
 
@@ -38,7 +40,7 @@ export type GooglePlacePhoto = {
   }>;
 };
 
-async function resolvePlaceId(apiKey: string) {
+const resolvePlaceId = cache(async (apiKey: string) => {
   const response = await fetch(`${PLACES_API_URL}/places:searchText`, {
     method: "POST",
     headers: {
@@ -47,7 +49,7 @@ async function resolvePlaceId(apiKey: string) {
       "X-Goog-FieldMask": "places.id",
     },
     body: JSON.stringify({ textQuery: "Soul 45 45 Newland Ave Hull HU5 3BE" }),
-    cache: "no-store",
+    next: { revalidate: 86400 },
   });
 
   if (!response.ok) {
@@ -56,9 +58,9 @@ async function resolvePlaceId(apiKey: string) {
 
   const data = (await response.json()) as { places?: Array<{ id?: string }> };
   return data.places?.[0]?.id ?? null;
-}
+});
 
-export async function getGooglePlaceDetails(fieldMask: string): Promise<GooglePlaceDetails | null> {
+export const getGooglePlaceDetails = cache(async (fieldMask: string): Promise<GooglePlaceDetails | null> => {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
@@ -66,7 +68,7 @@ export async function getGooglePlaceDetails(fieldMask: string): Promise<GooglePl
   }
 
   try {
-    const placeId = process.env.GOOGLE_PLACE_ID ?? (await resolvePlaceId(apiKey));
+    const placeId = process.env.GOOGLE_PLACE_ID || (await resolvePlaceId(apiKey));
 
     if (!placeId) {
       return null;
@@ -77,7 +79,7 @@ export async function getGooglePlaceDetails(fieldMask: string): Promise<GooglePl
         "X-Goog-Api-Key": apiKey,
         "X-Goog-FieldMask": fieldMask,
       },
-      cache: "no-store",
+      next: { revalidate: 3600 },
     });
 
     if (!response.ok) {
@@ -88,12 +90,12 @@ export async function getGooglePlaceDetails(fieldMask: string): Promise<GooglePl
   } catch {
     return null;
   }
-}
+});
 
 async function getPhotoMediaUrl(apiKey: string, photoName: string) {
   const response = await fetch(`${PLACES_API_URL}/${photoName}/media?maxWidthPx=1200&skipHttpRedirect=true`, {
     headers: { "X-Goog-Api-Key": apiKey },
-    cache: "no-store",
+    next: { revalidate: 3600 },
   });
 
   if (!response.ok) {
@@ -104,7 +106,7 @@ async function getPhotoMediaUrl(apiKey: string, photoName: string) {
   return data.photoUri ?? null;
 }
 
-export async function getGooglePlacePhotos(): Promise<GooglePlacePhoto[]> {
+export const getGooglePlacePhotos = cache(async (): Promise<GooglePlacePhoto[]> => {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
@@ -137,4 +139,4 @@ export async function getGooglePlacePhotos(): Promise<GooglePlacePhoto[]> {
   );
 
   return resolvedPhotos.filter((photo): photo is GooglePlacePhoto => photo !== null);
-}
+});

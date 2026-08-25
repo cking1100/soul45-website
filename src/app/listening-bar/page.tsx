@@ -21,7 +21,7 @@ export default function ListeningBarPage() {
 
       <section className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-8">
         <article className="image-card relative min-h-[30rem] overflow-hidden">
-          <Image src="/images/gallery-dj.svg" alt="Turntables and DJ setup" fill className="object-cover" />
+          <Image src="/images/gallery-dj.svg" alt="Turntables and DJ setup" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         </article>
 
         <article className="border border-border bg-[#120d0b] p-6 md:p-8">

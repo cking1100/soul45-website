@@ -26,7 +26,7 @@ export default function GalleryPage() {
       />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8">
-        <GalleryGrid images={galleryImages} />
+        <GalleryGrid images={galleryImages} priorityFirst />
         <GoogleGallery photosPromise={googlePhotosPromise} />
       </section>
 
