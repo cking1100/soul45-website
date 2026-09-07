@@ -77,6 +77,12 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
             </p>
           ) : null}
 
+          {event.body ? (
+            <div className="mt-6 whitespace-pre-line rounded-2xl border border-border bg-black/20 p-4 text-sm leading-relaxed text-ink-soft">
+              {event.body}
+            </div>
+          ) : null}
+
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/events"
