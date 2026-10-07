@@ -16,7 +16,7 @@ export function EventCard({ event }: EventCardProps) {
           alt={event.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
+          className={event.imageFit === "contain" ? "object-contain" : "object-cover"}
         />
         <p className="absolute left-4 top-4 bg-black/70 px-2 py-1 text-[0.56rem] uppercase tracking-[0.2em] text-ink">
           Soul 45 / Programme

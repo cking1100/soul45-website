@@ -7,6 +7,7 @@ export type EventEntry = {
   timeLabel: string;
   artistsLabel: string;
   image: string;
+  imageFit?: "cover" | "contain";
   ticketUrl?: string;
   startAt?: string;
   endAt?: string;
@@ -76,6 +77,20 @@ const eventEntries: EventEntry[] = [
       weekday: 6,
       startsOn: "2026-09-26T19:00:00",
     },
+    isPlaceholder: false,
+  },
+  {
+    slug: "liquid-soul",
+    title: "Liquid Soul",
+    summary:
+      "A night of liquid, soulful and classic drum & bass, with special guest Laysen and residents Twelve Step Audio and Kandi. Free entry.",
+    dateLabel: "Friday 23rd October 2026",
+    timeLabel: "6:00PM - MIDNIGHT",
+    artistsLabel: "Laysen, Twelve Step Audio, Kandi",
+    image: "/images/liquidsoul.png",
+    imageFit: "contain",
+    startAt: "2026-10-23T18:00:00",
+    endAt: "2026-10-24T00:00:00",
     isPlaceholder: false,
   },
   {
