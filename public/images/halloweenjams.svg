@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 960" role="img" aria-labelledby="title description">
+  <title id="title">Halloween Strawberry Jams</title>
+  <desc id="description">Halloween house music and fancy dress at Soul 45, October 31, 6pm to midnight, with Strawberry Jams and Jonny Debt.</desc>
+  <defs>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="3" stitchTiles="stitch" result="noise" />
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono" />
+      <feComponentTransfer in="mono" result="softNoise">
+        <feFuncA type="table" tableValues="0 0.16" />
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="softNoise" mode="screen" />
+    </filter>
+    <filter id="redGlow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="740" height="960" fill="#080807" />
+  <rect width="740" height="960" fill="#17120f" opacity="0.42" filter="url(#grain)" />
+  <g fill="#f23b20" font-family="Arial, Helvetica, sans-serif" font-weight="800" filter="url(#redGlow)">
+    <text x="120" y="207" font-size="27">OCT.31</text>
+    <text x="120" y="238" font-size="27">6PM - MIDNIGHT</text>
+    <text x="455" y="207" font-size="25">HOUSE MUSIC</text>
+    <text x="430" y="238" font-size="25">&amp; FANCY DRESS</text>
+
+    <text x="116" y="478" font-size="65" font-weight="900">HALLOWEEN</text>
+    <text x="120" y="535" font-size="39" font-weight="500">STRAWBERRY JAMS</text>
+    <text x="208" y="590" font-size="39" font-weight="500">JONNY DEBT</text>
+
+    <text x="120" y="745" font-size="24">SOUL 45</text>
+    <text x="120" y="775" font-size="24">RECORD SHOP</text>
+    <text x="405" y="745" font-size="24">45 NEWLAND AVE</text>
+    <text x="565" y="775" font-size="24">HULL</text>
+  </g>
+
+  <g fill="none" stroke="#d7d5ce" stroke-width="1.5" opacity="0.9">
+    <ellipse cx="370" cy="882" rx="69" ry="31" />
+    <ellipse cx="370" cy="882" rx="44" ry="31" />
+    <ellipse cx="370" cy="882" rx="21" ry="31" />
+    <path d="M302 882h136M311 869h118M311 895h118" />
+  </g>
+  <text x="370" y="891" text-anchor="middle" fill="#d7d5ce" font-family="Arial, Helvetica, sans-serif" font-size="23">45</text>
+</svg>
