@@ -4,14 +4,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/page-header";
-import { events, getEventBySlug } from "@/lib/events";
+import { getEventBySlug, getUpcomingEvents } from "@/lib/events";
 
 type EventDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return events.map((event) => ({ slug: event.slug }));
+  return getUpcomingEvents().map((event) => ({ slug: event.slug }));
 }
 
 export async function generateMetadata({ params }: EventDetailPageProps): Promise<Metadata> {

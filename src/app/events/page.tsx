@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import { CtaSection } from "@/components/cta-section";
 import { EventGrid } from "@/components/event-grid";
 import { PageHeader } from "@/components/page-header";
-import { events } from "@/lib/events";
+import { getUpcomingEvents } from "@/lib/events";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Events",
@@ -24,7 +26,7 @@ export default function EventsPage() {
         <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-soft">
           Each card includes date, time and DJ details so you can quickly see what is coming up at Soul 45.
         </p>
-        <EventGrid events={events} />
+        <EventGrid events={getUpcomingEvents()} />
       </section>
 
       <CtaSection

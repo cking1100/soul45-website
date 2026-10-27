@@ -8,7 +8,9 @@ import { EventGrid } from "@/components/event-grid";
 import { LocationSection } from "@/components/location-section";
 import { GoogleReviewsSection } from "@/components/google-reviews-section";
 import { SplashSection } from "@/components/splash-section";
-import { events } from "@/lib/events";
+import { getUpcomingEvents } from "@/lib/events";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Home",
@@ -164,7 +166,7 @@ export default function HomePage() {
             All Events
           </ButtonLink>
         </div>
-        <EventGrid events={events.slice(0, 3)} />
+        <EventGrid events={getUpcomingEvents().slice(0, 3)} />
       </section>
 
       <DraughtSection />

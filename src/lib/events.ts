@@ -80,20 +80,6 @@ const eventEntries: EventEntry[] = [
     isPlaceholder: false,
   },
   {
-    slug: "liquid-soul",
-    title: "Liquid Soul",
-    summary:
-      "A night of liquid, soulful and classic drum & bass, with special guest Laysen and residents Twelve Step Audio and Kandi. Free entry.",
-    dateLabel: "Friday 23rd October 2026",
-    timeLabel: "6:00PM - MIDNIGHT",
-    artistsLabel: "Laysen, Twelve Step Audio, Kandi",
-    image: "/images/liquidsoul.png",
-    imageFit: "contain",
-    startAt: "2026-10-23T18:00:00",
-    endAt: "2026-10-24T00:00:00",
-    isPlaceholder: false,
-  },
-  {
     slug: "halloween-strawberry-jams",
     title: "Halloween Strawberry Jams",
     summary: "Halloween night with house music and fancy dress, featuring Strawberry Jams and Jonny Debt.",
@@ -104,6 +90,19 @@ const eventEntries: EventEntry[] = [
     imageFit: "contain",
     startAt: "2026-10-31T18:00:00",
     endAt: "2026-11-01T00:00:00",
+    isPlaceholder: false,
+  },
+  {
+    slug: "gmg-and-friends",
+    title: "GMG and Friends",
+    summary:
+      "GMG and friends featuring Hotdog George, DJ Sus and DJ Goo. UK garage, speed garage and bassline. Free entry.",
+    dateLabel: "Friday 6th November 2026",
+    timeLabel: "8:00PM - MIDNIGHT",
+    artistsLabel: "Hotdog George, DJ Sus, DJ Goo",
+    image: "/images/gmg.png",
+    startAt: "2026-11-06T20:00:00",
+    endAt: "2026-11-07T00:00:00",
     isPlaceholder: false,
   },
   {
@@ -120,12 +119,19 @@ const eventEntries: EventEntry[] = [
   },
 ];
 
-export const events: EventEntry[] = [...eventEntries].sort(
-  (firstEvent, secondEvent) => getSortTime(firstEvent) - getSortTime(secondEvent),
-);
+// Evaluated per call so past one-off events drop off without a redeploy.
+export function getUpcomingEvents(now = new Date()): EventEntry[] {
+  return eventEntries
+    .filter((entry) => {
+      if (!entry.startAt) return true;
+      const end = entry.endAt ? parseLocalDate(entry.endAt) : parseLocalDate(entry.startAt);
+      return end.getTime() > now.getTime();
+    })
+    .sort((a, b) => getSortTime(a, now) - getSortTime(b, now));
+}
 
 export function getEventBySlug(slug: string) {
-  return events.find((entry) => entry.slug === slug);
+  return getUpcomingEvents().find((entry) => entry.slug === slug);
 }
 
 function getSortTime(event: EventEntry, referenceDate = new Date()) {
