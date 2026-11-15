@@ -142,16 +142,11 @@ export type NavItem = {
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Listening Bar", href: "/listening-bar" },
   { label: "Events", href: "/events" },
-  { label: "Records", href: "/records" },
   { label: "Drinks", href: "/drinks" },
   { label: "Gallery", href: "/gallery" },
   { label: "Visit", href: "/visit" },
 ];
-
-export const OPENING_HOURS_NOTE =
-  "Opening hours are announced on Instagram and in-venue notices.";
 
 export const CONTACT_NOTE =
   "For the latest announcements, event updates and direct messages, use Instagram.";

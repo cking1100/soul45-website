@@ -13,6 +13,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+The listening bar and record shop information is on the About page. The older
+`/listening-bar` and `/records` URLs redirect to their respective sections.
+
+Set `isResidency: true` on an event in `src/lib/events.ts` to show the residency
+badge. Recurring events are not automatically treated as residencies.
+Events with weekly recurrence display a Weekly badge.
+
+Regular opening hours are configured in `src/lib/opening-hours.ts`. The live
+status uses UK local time and does not account for exceptional closures.
+
 If port 3000 is in use:
 
 ```bash
@@ -38,4 +48,5 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 ```bash
 npm run lint
 npm run build
+node --experimental-strip-types --test tests/opening-hours.test.mjs
 ```

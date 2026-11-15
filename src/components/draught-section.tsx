@@ -51,18 +51,18 @@ function DraughtItem({ item }: { item: DraughtMenuItem }) {
 export function DraughtSection() {
   return (
     <section aria-labelledby="on-draught-title" className="border-y border-border bg-[#100c0a]">
-      <div className="mx-auto w-full max-w-7xl px-4 py-14 md:px-8 md:py-20">
-        <div className="mb-9 flex flex-wrap items-end justify-between gap-5">
+      <div className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-5">
           <div>
             <p className="catalog-label">Soul 45 / Bar</p>
-            <h2 id="on-draught-title" className="editorial-title mt-4 text-5xl text-ink md:text-7xl">On Draught</h2>
+            <h2 id="on-draught-title" className="editorial-title mt-4 text-4xl text-ink md:text-5xl">On Draught</h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-ink-soft md:text-right">
-            Four taps, poured in the room where the records turn.
+            Drinks to enjoy while the records turn.
           </p>
         </div>
 
-        <ul className="grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
           {DRAUGHT_MENU.map((item) => <DraughtItem key={item.name} item={item} />)}
         </ul>
 

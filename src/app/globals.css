@@ -42,6 +42,18 @@ body {
   min-height: 100vh;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: url("/images/vinyl-cursor.svg") 16 16, auto;
+  }
+
+  a[href],
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+}
+
 body::before {
   content: "";
   position: fixed;

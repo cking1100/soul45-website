@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/page-header";
+import { EventBadges } from "@/components/event-badges";
 import { getEventBySlug, getUpcomingEvents } from "@/lib/events";
 
 type EventDetailPageProps = {
@@ -54,6 +55,9 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
         </article>
 
         <article className="rounded-3xl border border-border bg-panel p-6 md:p-8">
+          {event.isResidency || event.recurrence?.cadence === "weekly" ? (
+            <div className="mb-4"><EventBadges event={event} /></div>
+          ) : null}
           <h2 className="font-display text-4xl tracking-[0.04em] text-ink">Event Information</h2>
           <dl className="mt-5 space-y-3 text-sm text-ink-soft">
             <div>

@@ -19,13 +19,10 @@ export default function EventsPage() {
       <PageHeader
         eyebrow="Events"
         title="Upcoming Soul 45 Sessions"
-        intro="This is the dedicated Soul 45 event hub. Browse live listings for upcoming sessions, dates and lineups."
+        intro="Find upcoming sessions, dates and lineups at Soul 45."
       />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8">
-        <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-soft">
-          Each card includes date, time and DJ details so you can quickly see what is coming up at Soul 45.
-        </p>
         <EventGrid events={getUpcomingEvents()} />
       </section>
 

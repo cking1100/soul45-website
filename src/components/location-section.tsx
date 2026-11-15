@@ -1,12 +1,12 @@
 import Link from "next/link";
 
+import { OpeningHours } from "@/components/opening-hours";
 import {
   ADDRESS_LINES,
   BUSINESS_FULL_NAME,
   CONTACT_NOTE,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
-  OPENING_HOURS_NOTE,
 } from "@/lib/site";
 
 const MAP_QUERY = "Soul 45, 45 Newland Ave, Hull HU5 3BE";
@@ -22,7 +22,7 @@ export function LocationSection() {
             <div key={line}>{line}</div>
           ))}
         </address>
-        <p className="mt-6 text-sm text-ink-soft">{OPENING_HOURS_NOTE}</p>
+        <OpeningHours />
         <p className="mt-3 text-sm text-ink-soft">{CONTACT_NOTE}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

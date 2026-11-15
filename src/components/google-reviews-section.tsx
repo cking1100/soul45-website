@@ -59,10 +59,6 @@ export async function GoogleReviewsSection({ compact = false }: GoogleReviewsSec
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-accent">Google Reviews</p>
             <h2 className="mt-3 font-display text-4xl tracking-[0.04em] text-ink md:text-5xl">What People Are Saying</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-soft">
-              Reviews are managed on Google. Use the links below to open the live reviews view and submit your own
-              review directly on Google.
-            </p>
             {data?.rating ? (
               <p className="mt-3 text-sm text-ink-soft">
                 {data.placeName ?? "Soul 45"} . {data.rating.toFixed(1)} stars from {data.userRatingCount ?? 0} Google
@@ -77,31 +73,8 @@ export async function GoogleReviewsSection({ compact = false }: GoogleReviewsSec
             rel="noreferrer"
             className="inline-flex rounded-full bg-accent px-5 py-2.5 text-xs uppercase tracking-[0.15em] text-black transition hover:bg-accent-2"
           >
-            View On Google
+            Read or leave a review
           </Link>
-        </div>
-
-        <div className="rounded-2xl border border-border bg-black/30 p-5">
-          <p className="text-xs uppercase tracking-[0.16em] text-accent">Reviews View</p>
-          <h3 className="mt-3 font-display text-3xl tracking-[0.04em] text-ink">Read And Leave A Review</h3>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <Link
-              href={GOOGLE_REVIEWS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex rounded-full bg-accent px-4 py-2 text-xs uppercase tracking-[0.14em] text-black transition hover:bg-accent-2"
-            >
-              Read Reviews
-            </Link>
-            <Link
-              href={GOOGLE_REVIEWS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.14em] text-ink-soft transition hover:border-accent hover:text-accent"
-            >
-              Leave A Review
-            </Link>
-          </div>
         </div>
 
         {hasLiveReviews ? (
@@ -129,13 +102,7 @@ export async function GoogleReviewsSection({ compact = false }: GoogleReviewsSec
               </article>
             ))}
           </div>
-        ) : (
-          <div className="mt-4 rounded-2xl border border-border bg-black/20 p-5">
-            <p className="text-sm leading-relaxed text-ink-soft">
-              Read the latest feedback on Google, or share your own experience with the Soul 45 community.
-            </p>
-          </div>
-        )}
+        ) : null}
       </article>
     </section>
   );

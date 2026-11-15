@@ -18,12 +18,9 @@ export function EventGrid({ events }: EventGridProps) {
   }
 
   return (
-    <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-      {events.map((event, index) => (
-        <div
-          key={event.slug}
-          className={index % 2 === 1 ? "md:translate-y-8" : ""}
-        >
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {events.map((event) => (
+        <div key={event.slug}>
           <EventCard event={event} />
         </div>
       ))}

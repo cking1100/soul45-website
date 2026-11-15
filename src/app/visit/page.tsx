@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { LocationSection } from "@/components/location-section";
+import { GoogleReviewsSection } from "@/components/google-reviews-section";
 import { PageHeader } from "@/components/page-header";
 import { ADDRESS_LINES } from "@/lib/site";
 
@@ -19,6 +20,7 @@ export default function VisitPage() {
       />
 
       <LocationSection />
+      <GoogleReviewsSection compact />
     </>
   );
 }

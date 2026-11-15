@@ -12,6 +12,7 @@ export type EventEntry = {
   startAt?: string;
   endAt?: string;
   recurrence?: EventRecurrence;
+  isResidency?: boolean;
   isPlaceholder: boolean;
 };
 
@@ -38,6 +39,7 @@ const eventEntries: EventEntry[] = [
     timeLabel: "Monthly residency",
     artistsLabel: "3 fantastic DJs playing vinyl",
     image: "/images/Burnt-toast.png",
+    isResidency: true,
     recurrence: {
       cadence: "monthly",
       occurrence: "last",
@@ -71,6 +73,7 @@ const eventEntries: EventEntry[] = [
     timeLabel: "Monthly residency / 7pm till late",
     artistsLabel: "Strawberry Jams",
     image: "/images/strawberry-residency.png",
+    isResidency: true,
     recurrence: {
       cadence: "monthly",
       occurrence: "last",

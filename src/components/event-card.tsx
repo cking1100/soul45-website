@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { EventEntry } from "@/lib/events";
+import { EventBadges } from "./event-badges";
 
 type EventCardProps = {
   event: EventEntry;
@@ -18,9 +19,15 @@ export function EventCard({ event }: EventCardProps) {
           sizes="(max-width: 768px) 100vw, 33vw"
           className={event.imageFit === "contain" ? "object-contain" : "object-cover"}
         />
-        <p className="absolute left-4 top-4 bg-black/70 px-2 py-1 text-[0.56rem] uppercase tracking-[0.2em] text-ink">
-          Soul 45 / Programme
-        </p>
+        <div className="absolute left-4 top-4">
+          {event.isResidency || event.recurrence?.cadence === "weekly" ? (
+            <EventBadges event={event} />
+          ) : (
+            <p className="bg-black/70 px-2 py-1 text-[0.56rem] uppercase tracking-[0.2em] text-ink">
+              Soul 45 / Programme
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
