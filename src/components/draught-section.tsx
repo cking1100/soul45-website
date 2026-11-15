@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { DRAUGHT_MENU, type MenuItem } from "@/lib/site";
+import { DRAUGHT_MENU, type DraughtMenuItem } from "@/lib/site";
 
-function drinkLabel(item: MenuItem) {
+function drinkLabel(item: DraughtMenuItem) {
   const qualifierStart = item.name.indexOf(" (");
 
   if (qualifierStart === -1) {
@@ -16,7 +16,7 @@ function drinkLabel(item: MenuItem) {
   };
 }
 
-function DraughtItem({ item }: { item: MenuItem }) {
+function DraughtItem({ item }: { item: DraughtMenuItem }) {
   const label = drinkLabel(item);
 
   return (
@@ -28,7 +28,7 @@ function DraughtItem({ item }: { item: MenuItem }) {
             alt={item.imageAlt ?? item.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-contain p-5 transition duration-700 ease-out group-hover:scale-105 md:p-7"
+            className="scale-[1.12] object-cover transition duration-700 ease-out group-hover:scale-[1.18]"
             style={{ objectPosition: item.imagePosition }}
           />
         </div>
@@ -38,9 +38,11 @@ function DraughtItem({ item }: { item: MenuItem }) {
           <p className="text-[0.56rem] uppercase tracking-[0.2em] text-accent">On draught</p>
           <h3 className="editorial-title mt-2 text-3xl text-ink md:text-4xl">{label.name}</h3>
         </div>
-        <p className="mt-3 text-sm uppercase tracking-[0.14em] text-ink-soft">
-          {label.qualifier ? `${label.qualifier} — ` : ""}{item.price}
-        </p>
+        {item.price ? (
+          <p className="mt-3 text-sm uppercase tracking-[0.14em] text-ink-soft">
+            {label.qualifier ? `${label.qualifier} — ` : ""}{item.price}
+          </p>
+        ) : null}
       </div>
     </li>
   );

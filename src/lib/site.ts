@@ -24,37 +24,54 @@ export type MenuItem = {
   imagePosition?: string;
 };
 
+export type DraughtMenuItem = Omit<MenuItem, "price"> & { price?: string };
+
 export type WineCollection = {
   name: string;
   wines: string[];
   servings: MenuItem[];
 };
 
-export const DRAUGHT_MENU: MenuItem[] = [
+export const DRAUGHT_MENU: DraughtMenuItem[] = [
   {
     name: "Brinkhoffs Lager",
     price: "£5.90",
-    image: "/images/Brinkhoffs-Lager.png",
-    imageAlt: "Brinkhoffs Lager tap at Soul 45",
+    image: "/images/brinkhoffslager.jpg",
+    imageAlt: "Brinkhoffs Lager tap badge at Soul 45",
+    imagePosition: "center 58%",
   },
   {
     name: "Grand Central IPA",
     price: "£6.50",
-    image: "/images/Grand-Central-IPA.png",
-    imageAlt: "Grand Central IPA tap at Soul 45",
+    image: "/images/GrandcentralIPA.jpg",
+    imageAlt: "Grand Central IPA tap badge at Soul 45",
+    imagePosition: "center 58%",
   },
   {
     name: "Appleshed Cider",
     price: "£5.90",
-    image: "/images/Appleshed-Cider.png",
-    imageAlt: "Appleshed Cider tap at Soul 45",
+    image: "/images/appleshed.jpg",
+    imageAlt: "Appleshed cider tap badge at Soul 45",
+    imagePosition: "center 58%",
   },
   {
     name: "Kasteel Rouge (½ Pint)",
     price: "£7.00",
-    image: "/images/kasteel-rouge.jpg",
-    imageAlt: "Kasteel Rouge product label",
-    imagePosition: "center",
+    image: "/images/Kasteel.jpg",
+    imageAlt: "Kasteel Rouge tap badge at Soul 45",
+    imagePosition: "center 58%",
+  },
+  {
+    name: "Camden Easy IPA",
+    image: "/images/camdoneasyIPA.jpg",
+    imageAlt: "Camden Easy IPA tap badge at Soul 45",
+    imagePosition: "center 58%",
+  },
+  {
+    name: "Ripe Peach Lager",
+    image: "/images/ripepeachlager.jpg",
+    imageAlt: "Ripe Peach Lager tap badge at Soul 45",
+    imagePosition: "center 58%",
   },
 ];
 

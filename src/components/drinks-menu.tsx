@@ -115,7 +115,8 @@ function DraughtList() {
                   alt={item.imageAlt ?? name}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-contain p-5 sm:p-7"
+                  className="scale-[1.12] object-cover"
+                  style={{ objectPosition: item.imagePosition }}
                 />
               ) : null}
             </div>
@@ -124,9 +125,11 @@ function DraughtList() {
                 <p className="text-[0.56rem] uppercase tracking-[0.2em] text-accent">Draught</p>
                 <h4 className="mt-2 font-display text-3xl leading-none tracking-[0.04em] text-ink">{name}</h4>
               </div>
+              {item.price ? (
               <p className="mt-3 text-sm uppercase tracking-[0.14em] text-ink-soft">
                 {qualifier ? `${qualifier} — ` : null}{item.price}
               </p>
+              ) : null}
             </div>
           </li>
         );
