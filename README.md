@@ -29,6 +29,19 @@ If port 3000 is in use:
 npm run dev -- --port 3001
 ```
 
+## Google Analytics
+
+Create a Google Analytics 4 web data stream and set `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+to its `G-...` measurement ID in `.env.local` and your hosting provider's build
+environment. Restart locally or redeploy after changing it. Without a valid ID,
+analytics is disabled.
+
+The Google tag loads on every page for all visitors. Configure the GA4 web stream's
+Enhanced Measurement to enable page views on browser history changes so
+client-side navigation is tracked. Do not add a separate page-view tracker,
+which could cause duplicates. Google may collect data according to its
+[privacy policy](https://policies.google.com/privacy).
+
 ## Google Reviews Enhanced Embed
 
 The Google reviews section can render live Google review entries when Places credentials are present.
