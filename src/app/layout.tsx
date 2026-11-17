@@ -35,12 +35,7 @@ const keywords = [
 ];
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-const analyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const validAnalyticsId = analyticsId && /^G-[A-Z0-9]+$/.test(analyticsId) ? analyticsId : undefined;
-
-if (analyticsId && !validAnalyticsId) {
-  console.error("Invalid NEXT_PUBLIC_GA_MEASUREMENT_ID; Google Analytics is disabled.");
-}
+const tagManagerId = "GTM-T84DN5WM";
 
 const businessJsonLd = {
   "@context": "https://schema.org",
@@ -99,17 +94,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
-        {validAnalyticsId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${validAnalyticsId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${validAnalyticsId}');`}
-            </Script>
-          </>
-        ) : null}
+        <Script id="google-tag-manager" strategy="beforeInteractive">
+          {"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());"}
+        </Script>
+        <Script
+          src={`https://www.googletagmanager.com/gtm.js?id=${tagManagerId}`}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
