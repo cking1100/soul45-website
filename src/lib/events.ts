@@ -67,19 +67,13 @@ const eventEntries: EventEntry[] = [
   {
     slug: "strawberry-jams",
     title: "STRAWBERRY JAMS",
-    summary:
-      "Monthly residency on the last Saturday of every month. Catch Strawberry Jams 7pm till late at Soul 45, spinning deep grooves and bumping rhythms.",
-    dateLabel: "Last Saturday of every month",
-    timeLabel: "Monthly residency / 7pm till late",
+    summary: "Join Strawberry Jams at Soul 45 for Tech House, Deep House and Garage.",
+    dateLabel: "Saturday 28th November 2026",
+    timeLabel: "19:00 - 00:00",
     artistsLabel: "Strawberry Jams",
-    image: "/images/strawberry-residency.png",
-    isResidency: true,
-    recurrence: {
-      cadence: "monthly",
-      occurrence: "last",
-      weekday: 6,
-      startsOn: "2026-09-26T19:00:00",
-    },
+    image: "/images/SJams281126.png",
+    startAt: "2026-11-28T19:00:00",
+    endAt: "2026-11-29T00:00:00",
     isPlaceholder: false,
   },
   {
